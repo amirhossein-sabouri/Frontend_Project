@@ -113,7 +113,7 @@
                                     </div>  
                                     <div class="p-all-5">
                                         <span class="f-bold">اکشن :</span>
-                                        <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                        <i class="material-icons red-text m-r-6 m-l-5 " x-on:click="handleDeleteUser(user.id)">delete_forever</i>
                                         <i class="material-icons blue-text m-l-15">edit</i>
                                     </div>                                        
                                 </div>
@@ -142,7 +142,7 @@
                                         <td x-text="user.email"></td>
                                         <td x-text = "(user.address?.city || '') + '-'+(user.address?.street || '')"></td>
                                         <td>                                        
-                                            <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                            <i class="material-icons red-text m-r-6 m-l-5" x-on:click="handleDeleteUser(user.id)">delete_forever</i>
                                             <i class="material-icons blue-text m-l-15">edit</i>
                                         </td>
                                     </tr> 

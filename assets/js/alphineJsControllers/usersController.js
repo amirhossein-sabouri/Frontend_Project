@@ -113,6 +113,25 @@ document.addEventListener('alpine:init', () => {
                         input.removeAttribute('data-listener-added_96d883de');
                     }
                 });
+            },
+            handleDeleteUser(userId){
+                var toastHTML = '<span>ایا از حذف کاربر ('+userId+')اطمینان دارید؟</span><button class="btn-flat toast-action" x-on:click="handleConfirmDeleteUser('+userId+')">بله</button>';
+                M.toast({html: toastHTML});
+            },
+            handleConfirmDeleteUser(userId){
+                // alert(userId);
+                this.isLoading = true
+                axios.delete("https://jsonplaceholder.typicode.com/users/"+userId)
+                .then((res) => {
+                    if(res.status == 200) {
+                       this.mainUsers =  this.mainUsers.filter(user=>user.id != userId)
+                       this.users =  this.users.filter(user=>user.id != userId)
+                       this.pagination()
+                        M.toast({html: 'کاربر با موفقیت حذف شد', classes: 'green'});                        
+                    }
+                }).finally(() => {
+                    this.isLoading = false;
+                });
             }
             
 
