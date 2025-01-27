@@ -60,7 +60,7 @@
                     <!-----add button--------------------------------------------->
                     <div class="p-l-10 p-r-10 p-t-20 col s12 m4 l3 m-t-5 m-b-0
                     ">
-                        <button id="add_user_button" class="waves-effect waves-light btn blue darken-1 p-l-35 p-l-35 w-full rounded_pill flex-c" x-on:click = "showAddModal = true">
+                        <button id="add_user_button" class="waves-effect waves-light btn blue darken-1 p-l-35 p-l-35 w-full rounded_pill flex-c" x-on:click = "showAddModal = true; userIdToEdit = null;  handleResetForm()">
                             افزودن کاربر
                             <i class="material-icons m-l-5">add</i>
                         </button>
@@ -101,7 +101,7 @@
                                 <div class="collapsible-body">
                                     <div class="p-all-5 ">
                                         <span class="f-bold">نام کاربری :</span>
-                                        <span x-text="user.name"></span>
+                                        <span x-text="user.username"></span>
                                     </div>
                                     <div class="p-all-5">
                                         <span class="f-bold">ایمیل :</span>
@@ -113,8 +113,8 @@
                                     </div>  
                                     <div class="p-all-5">
                                         <span class="f-bold">اکشن :</span>
-                                        <i class="material-icons red-text m-r-6 m-l-5 " x-on:click="handleDeleteUser(user.id)">delete_forever</i>
-                                        <i class="material-icons blue-text m-l-15">edit</i>
+                                        <i class="material-icons red-text m-r-6 m-l-5 " x-on:click="handleDeleteUser(user)">delete_forever</i>
+                                        <i class="material-icons blue-text m-l-15" x-on:click="handleUpdateUser(user)">edit</i>
                                     </div>                                        
                                 </div>
                             </li>     
@@ -142,8 +142,8 @@
                                         <td x-text="user.email"></td>
                                         <td x-text = "(user.address?.city || '') + '-'+(user.address?.street || '')"></td>
                                         <td>                                        
-                                            <i class="material-icons red-text m-r-6 m-l-5" x-on:click="handleDeleteUser(user.id)">delete_forever</i>
-                                            <i class="material-icons blue-text m-l-15">edit</i>
+                                            <i class="material-icons red-text m-r-6 m-l-5" x-on:click="handleDeleteUser(user)">delete_forever</i>
+                                            <i class="material-icons blue-text m-l-15" x-on:click="handleUpdateUser(user)">edit</i>
                                         </td>
                                     </tr> 
                                 </template>
@@ -180,7 +180,8 @@
                         <div class="row p-r-40 p-l-20 p-t-10 p-b-10 pos-relative top-7 center">
                             <h5 class="labels">
                                 <i class="material-icons m-r-10 pos-relative top-3 " style="font-size: 1.5em;">person_add</i>
-                                افزودن کاربر
+                                <span x-text="userIdToEdit ? 'ادیت اطلاعات کاربر' : 'افزودن کاربر' "></span>
+                                
                             </h5>
                             <form>
                                 <div class="input-field col s12">
@@ -198,8 +199,8 @@
 
 
                                 <button type="button" class="waves-effect waves-light btn blue darken-1 m-t-30 m-b-10 m-l-30 w-full max-w-300 rounded_pill pulse"
-                                 x-on:click="handleSubmitAddUserForm()"
-                                 x-bind:class="{'pulse' : isLoading}"
+                                 x-on:click="userIdToEdit ? handleConfirmEditUser() : handleSubmitAddUserForm()"
+                                 x-bind:class="{'pulse' : isLoading, 'orange':userIdToEdit}"
                                  x-bind:disabled="isLoading"
                                  >
                                     ثبت کردن
