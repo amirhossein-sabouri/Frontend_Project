@@ -6,6 +6,7 @@
         <title>User Page</title>
 
         <link rel="stylesheet" href="/assets/materialize-v1.0.0/materialize/css/materialize.min.css">
+        <link rel="stylesheet" href="/assets/materialize-v1.0.0/materialize/css/materialize.css">     
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="/assets/materialize-v1.0.0/materialize/css/materialize-rtl.min.css">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -19,9 +20,9 @@
 
             <!--navbar section-----start------->
             <nav class="white z-depth-0 top_navbar">
-                <div class="nav-wrapper " style="background-color: rgb(68, 123, 207);">
-                  <a href="#!" class="blue-text hide-on-med-and-up" >مدیریت کاربر</a>
-                  <a href="#" data-target="mobile-demo" class="sidenav-trigger blue-text right"><i class="material-icons" >menu</i><a>
+                <div class="nav-wrapper " style="background-color: rgb(68, 123, 207);color: white;">
+                  <a href="#!" class="blue-text hide-on-med-and-up white-text">مدیریت کاربر</a>
+                  <a href="#" data-target="mobile-demo" class="sidenav-trigger blue-text right white-text"><i class="material-icons" >menu</i><a>
                   <ul class="right hide-on-med-and-down dis-flex">  
             <li><a href="sass.html"  >خانه</a></li>   
             <li><a href="sass.html"  >دسته بندی ها</a></li>  
@@ -108,7 +109,7 @@
                                     </div>     
                                     <div class="p-all-5">
                                         <span class="f-bold">ادرس :</span>
-                                        <span x-text="user.address.city + '-'+user.address.street"></span>
+                                        <span x-text="(user.address?.city || '') + '-'+(user.address?.street || '')"></span>
                                     </div>  
                                     <div class="p-all-5">
                                         <span class="f-bold">اکشن :</span>
@@ -118,57 +119,6 @@
                                 </div>
                             </li>     
                             </template>
-
-                            <!-- <li class="users_list_item ">
-                                <div class="collapsible-header" style="text-align: right; direction: rtl;">
-                                    <i class="material-icons blue-text darken-3 trans-0-4 users_list_arrow_icon">arrow_drop_down_circle</i>
-                                    میلاد دهیامی
-                                </div>
-                                <div class="collapsible-body" style="text-align: right; direction: rtl;">
-                                    <div class="p-all-5">
-                                        <span class="f-bold">نام کاربری :</span>
-                                        <span>milad_#</span>
-                                    </div>
-                                    <div class="p-all-5">
-                                        <span class="f-bold">ایمیل :</span>
-                                        <span>miladdehyammi9@gmail.com</span>
-                                    </div>      
-                                    <div class="p-all-5">
-                                        <span class="f-bold">ادرس :</span>
-                                        <span>تبریز, ابرسان, خیابان اسکان 5, ساختمان مداد</span>
-                                    </div>  
-                                    <div class="p-all-5">
-                                        <span class="f-bold">اکشن :</span>
-                                        <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
-                                        <i class="material-icons blue-text m-l-15">edit</i>
-                                    </div>                                    
-                                </div>
-                            </li>
-                            <li class="users_list_item">
-                                <div class="collapsible-header " style="text-align: right; direction: rtl;">
-                                    <i class="material-icons blue-text darken-3 trans-0-4 users_list_arrow_icon">arrow_drop_down_circle</i>
-                                    امیرحسین امیری
-                                </div>
-                                <div class="collapsible-body" style="text-align: right; direction: rtl;">
-                                    <div class="p-all-5">
-                                        <span class="f-bold">نام کاربری :</span>
-                                        <span>Amiri#</span>
-                                    </div>
-                                    <div class="p-all-5">
-                                        <span class="f-bold">ایمیل :</span>
-                                        <span>amirhosseinamiri9@gmail.com</span>
-                                    </div>  
-                                    <div class="p-all-5">
-                                        <span class="f-bold">ادرس :</span>
-                                        <span>استانبول, میدان تقسیم, هتل گرانزا</span>
-                                    </div>  
-                                    <div class="p-all-5">
-                                        <span class="f-bold">اکشن :</span>
-                                        <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
-                                        <i class="material-icons blue-text m-l-15">edit</i>
-                                    </div>                                         
-                                </div>
-                            </li> -->
                         </ul>
                         
                         <div class="hide-on-med-and-down show-on-medium-and-up container m-t-0">
@@ -190,47 +140,13 @@
                                         <td x-text="user.name"></td>
                                         <td x-text= "user.username"></td>
                                         <td x-text="user.email"></td>
-                                        <td x-text = "user.address.city+'-'+user.address.street"></td>
+                                        <td x-text = "(user.address?.city || '') + '-'+(user.address?.street || '')"></td>
                                         <td>                                        
                                             <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
                                             <i class="material-icons blue-text m-l-15">edit</i>
                                         </td>
                                     </tr> 
                                 </template>
-
-                                    <!-- <tr>
-                                        <td>2</td>
-                                        <td>میلاد دهیامی</td>
-                                        <td>milad_#</td>
-                                        <td>miladdehyammi9@gmail.com</td>
-                                        <td>تبریز,ابرسان,خیابان اسکان 5,ساختمان مداد</td>
-                                        <td>
-                                            <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
-                                            <i class="material-icons blue-text m-l-15">edit</i>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>امیرحسین امیری</td>
-                                        <td>Amiri#</td>
-                                        <td>amirhosseinamiri9@gmail.com</td>
-                                        <td>استانبول,میدان تقسیم,هتل گرانزا</td>
-                                        <td>
-                                            <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
-                                            <i class="material-icons blue-text m-l-15">edit</i>
-                                        </td>
-                                    </tr> -->
-                                    <!-- <tr>
-                                        <td>1</td>
-                                        <td>امیرحسین صبوری خسروشاهی</td>
-                                        <td>Amir#</td>
-                                        <td>sabouriamirhossein9@gmail.com</td>
-                                        <td>تهران,میدان ولیعصر ,بلوار کریم خان,کوچه بالاور,پلاک22</td>
-                                        <td>                                        
-                                            <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
-                                            <i class="material-icons blue-text m-l-15">edit</i>
-                                        </td>
-                                    </tr>  -->
                                 </tbody>
                             </table>
                         </div>
@@ -281,15 +197,17 @@
                                 </div> 
 
 
-                                <button type="button" class="waves-effect waves-light btn blue darken-1 m-t-30 m-b-10 m-l-30 w-full max-w-300 rounded_pill" x-on:click="handleSubmitAddUserForm()">
+                                <button type="button" class="waves-effect waves-light btn blue darken-1 m-t-30 m-b-10 m-l-30 w-full max-w-300 rounded_pill pulse"
+                                 x-on:click="handleSubmitAddUserForm()"
+                                 x-bind:class="{'pulse' : isLoading}"
+                                 x-bind:disabled="isLoading"
+                                 >
                                     ثبت کردن
                                 </button>
                             </form>
 
                         </div>
                     </div>   
-
-
                 <script src="/assets/js/axios.js"></script>       
               <script defer src="/assets/js/alphine.js"></script>
               <script  src="/assets/js/alphineJsControllers/usersController.js"></script>

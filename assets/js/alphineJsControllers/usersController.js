@@ -74,18 +74,48 @@ document.addEventListener('alpine:init', () => {
                 
             },
             handleSubmitAddUserForm(){
-                // console.log(this.newUserInfo);
                 this.isLoading = true;
-                axios.post("https://jsonplaceholder.typicode.com/users",this.newUserInfo).then((res)=>{
-                    console.log(res);
-                    
-                }).catch(error=>{
-                    console.log(error.message);
-                }).finally(()=>{
-                    this.isLoading = false;
-                })
-                
+                axios.post("https://jsonplaceholder.typicode.com/users", this.newUserInfo)
+                    .then((res) => {
+                        if(res.status == 201) {
+                            this.mainUsers.push(res.data);
+                            this.showAddModal = false;
+                            this.handleResetForm();  // Call the reset function here
+                            this.pagination();
+                            M.toast({html: 'کاربر با موفقیت ایجاد شد', classes: 'rounded green'});
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                    })
+                    .finally(() => {
+                        this.isLoading = false;
+                    });
+            },
+            handleResetForm(){
+                this.newUserInfo = {
+                    name: "",
+                    username: "",
+                    email: "",
+                };
+            
+                // Reset MaterializeCSS labels
+                M.updateTextFields();
+            
+                // Remove 'active' class from labels to reset them visually
+                document.querySelectorAll('.input-field label').forEach(label => {
+                    label.classList.remove('active');
+                });
+            
+                // Remove the custom data attribute from inputs
+                document.querySelectorAll('input').forEach(input => {
+                    if (input.hasAttribute('data-listener-added_96d883de')) {
+                        input.removeAttribute('data-listener-added_96d883de');
+                    }
+                });
             }
+            
+
             
         }
     })
