@@ -1,0 +1,301 @@
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Page</title>
+
+        <link rel="stylesheet" href="/assets/materialize-v1.0.0/materialize/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/materialize-v1.0.0/materialize/css/materialize-rtl.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/util.css">
+        <link rel="icon" href="/assets/favicon-32x32.png" type="image/x-icon">
+        <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+
+      </head>
+      <body dir="rtl" x-data="userData()">
+
+            <!--navbar section-----start------->
+            <nav class="white z-depth-0 top_navbar">
+                <div class="nav-wrapper " style="background-color: rgb(68, 123, 207);">
+                  <a href="#!" class="blue-text hide-on-med-and-up" >مدیریت کاربر</a>
+                  <a href="#" data-target="mobile-demo" class="sidenav-trigger blue-text right"><i class="material-icons" >menu</i><a>
+                  <ul class="right hide-on-med-and-down dis-flex">  
+            <li><a href="sass.html"  >خانه</a></li>   
+            <li><a href="sass.html"  >دسته بندی ها</a></li>  
+            <li><a href="badges.html" >دوره ها</a></li>         
+            <li><a href="collapsible.html" >مدرسین</a></li>
+            <li><a href="collapsible.html" >مسیر های یادگیری</a></li>
+            <li><a href="collapsible.html" >پرسش و پاسخ</a></li>
+
+                  </ul>
+                </div>
+            </nav>           
+            <ul class="sidenav " id="mobile-demo">
+                  <li><div class="user-view">
+                    <div class="background">
+                      <img src="/assets/images/back.jpg" class="w_100">
+                    </div>
+                    <a><img class="circle" src="/assets/images/avatar.png.png"></a>
+                    <a><span class="white-text name">Amir Hossein Sabouri</span></a>
+                    <a><span class="white-text email">sabouriamirhossein9@gmail.com</span></a>
+                  </div></li>
+                  <li><a href="#!"><i class="material-icons right sidenav_link_icon">attachment</i>AQ fastlearn</a></li>
+                  <li><a href="#!"><i class="material-icons right sidenav_link_icon">attachment</i>Codeyad</a></li>
+                  <li><div class="divider"></div></li>
+                  <li><a class="subheader" ></a></li>
+                  <li><a class="waves-effect">اطلاعات کاربری</a></li>
+                  <li><a class="waves-effect" href="#!">مشاهده پروفایل</a></li>
+                  <li><a class="waves-effect" href="#!">ثبت نظر</a></li>
+                  <li><a class="waves-effect" href="#!">دوره های من</a></li>
+                  <li><a class="waves-effect" href="#!">علاقه مندی ها</a></li>
+                  <li><a class="waves-effect" href="#">خروج</a></li>
+            </ul>
+          <!--navbar section------------end------->
+          <!---content-----section------------start---------------->
+                  <section id="top_action_section" class="row container">
+                    <!-----add button--------------------------------------------->
+                    <div class="p-l-10 p-r-10 p-t-20 col s12 m4 l3 m-t-5 m-b-0
+                    ">
+                        <button id="add_user_button" class="waves-effect waves-light btn blue darken-1 p-l-35 p-l-35 w-full rounded_pill flex-c" x-on:click = "showAddModal = true">
+                            افزودن کاربر
+                            <i class="material-icons m-l-5">add</i>
+                        </button>
+                    </div>
+                    <!------search box--------------------------------------------->
+                    
+                        <div class="row col s12 m8 l7 m-t-4">
+                            <div class="input-field col s12"
+                            x-init="$watch('searchChar',(value)=>handleSearch(value))">
+                              <input id="search" type="text" class="validate" 
+                              x-model="searchChar" >     
+                              <label for="search">
+                            <i class="material-icons pos-relative top-7">search</i>
+                                جست و جو
+                            </label>
+                            </div>
+                        </div>
+                        <div class="col l2 hide-on-med-and-down">
+
+                        </div>
+                        </section>
+                        <!-- -----User Section Field -------------------------------------------------------------------->
+ 
+                    
+                <div class="progress" x-show = "isLoading"></div>
+                <div class="indeterminate"></div>
+                
+
+
+                    <section class="user_list_section" x-init="getUsers()" id="#">
+                        <ul class="collapsible hide-on-med-and-up m-b-0" style="list-style-type: none; padding: 0;width: 100%;left: 0px;">
+                            <template x-for="user in pageUsers">
+                                <li class="users_list_item">
+                                <div class="collapsible-header">
+                                    <i class="material-icons blue-text darken-3 trans-0-4 users_list_arrow_icon">arrow_drop_down_circle</i>
+                                    <span x-text="user.name"></span>
+                                </div>
+                                <div class="collapsible-body">
+                                    <div class="p-all-5 ">
+                                        <span class="f-bold">نام کاربری :</span>
+                                        <span x-text="user.name"></span>
+                                    </div>
+                                    <div class="p-all-5">
+                                        <span class="f-bold">ایمیل :</span>
+                                        <span x-text="user.email"></span>
+                                    </div>     
+                                    <div class="p-all-5">
+                                        <span class="f-bold">ادرس :</span>
+                                        <span x-text="user.address.city + '-'+user.address.street"></span>
+                                    </div>  
+                                    <div class="p-all-5">
+                                        <span class="f-bold">اکشن :</span>
+                                        <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                        <i class="material-icons blue-text m-l-15">edit</i>
+                                    </div>                                        
+                                </div>
+                            </li>     
+                            </template>
+
+                            <!-- <li class="users_list_item ">
+                                <div class="collapsible-header" style="text-align: right; direction: rtl;">
+                                    <i class="material-icons blue-text darken-3 trans-0-4 users_list_arrow_icon">arrow_drop_down_circle</i>
+                                    میلاد دهیامی
+                                </div>
+                                <div class="collapsible-body" style="text-align: right; direction: rtl;">
+                                    <div class="p-all-5">
+                                        <span class="f-bold">نام کاربری :</span>
+                                        <span>milad_#</span>
+                                    </div>
+                                    <div class="p-all-5">
+                                        <span class="f-bold">ایمیل :</span>
+                                        <span>miladdehyammi9@gmail.com</span>
+                                    </div>      
+                                    <div class="p-all-5">
+                                        <span class="f-bold">ادرس :</span>
+                                        <span>تبریز, ابرسان, خیابان اسکان 5, ساختمان مداد</span>
+                                    </div>  
+                                    <div class="p-all-5">
+                                        <span class="f-bold">اکشن :</span>
+                                        <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                        <i class="material-icons blue-text m-l-15">edit</i>
+                                    </div>                                    
+                                </div>
+                            </li>
+                            <li class="users_list_item">
+                                <div class="collapsible-header " style="text-align: right; direction: rtl;">
+                                    <i class="material-icons blue-text darken-3 trans-0-4 users_list_arrow_icon">arrow_drop_down_circle</i>
+                                    امیرحسین امیری
+                                </div>
+                                <div class="collapsible-body" style="text-align: right; direction: rtl;">
+                                    <div class="p-all-5">
+                                        <span class="f-bold">نام کاربری :</span>
+                                        <span>Amiri#</span>
+                                    </div>
+                                    <div class="p-all-5">
+                                        <span class="f-bold">ایمیل :</span>
+                                        <span>amirhosseinamiri9@gmail.com</span>
+                                    </div>  
+                                    <div class="p-all-5">
+                                        <span class="f-bold">ادرس :</span>
+                                        <span>استانبول, میدان تقسیم, هتل گرانزا</span>
+                                    </div>  
+                                    <div class="p-all-5">
+                                        <span class="f-bold">اکشن :</span>
+                                        <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                        <i class="material-icons blue-text m-l-15">edit</i>
+                                    </div>                                         
+                                </div>
+                            </li> -->
+                        </ul>
+                        
+                        <div class="hide-on-med-and-down show-on-medium-and-up container m-t-0">
+                            <table class="striped highlight centered" >
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>نام</th>
+                                        <th>نام کاربری</th>
+                                        <th>ایمیل</th>
+                                        <th>ادرس</th>
+                                        <th>اکشن</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="desktop_list_users m-b-100 p-b-100">
+                                    <template x-for="user in pageUsers">                                    
+                                    <tr>
+                                        <td x-text="user.id"></td>
+                                        <td x-text="user.name"></td>
+                                        <td x-text= "user.username"></td>
+                                        <td x-text="user.email"></td>
+                                        <td x-text = "user.address.city+'-'+user.address.street"></td>
+                                        <td>                                        
+                                            <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                            <i class="material-icons blue-text m-l-15">edit</i>
+                                        </td>
+                                    </tr> 
+                                </template>
+
+                                    <!-- <tr>
+                                        <td>2</td>
+                                        <td>میلاد دهیامی</td>
+                                        <td>milad_#</td>
+                                        <td>miladdehyammi9@gmail.com</td>
+                                        <td>تبریز,ابرسان,خیابان اسکان 5,ساختمان مداد</td>
+                                        <td>
+                                            <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                            <i class="material-icons blue-text m-l-15">edit</i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>امیرحسین امیری</td>
+                                        <td>Amiri#</td>
+                                        <td>amirhosseinamiri9@gmail.com</td>
+                                        <td>استانبول,میدان تقسیم,هتل گرانزا</td>
+                                        <td>
+                                            <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                            <i class="material-icons blue-text m-l-15">edit</i>
+                                        </td>
+                                    </tr> -->
+                                    <!-- <tr>
+                                        <td>1</td>
+                                        <td>امیرحسین صبوری خسروشاهی</td>
+                                        <td>Amir#</td>
+                                        <td>sabouriamirhossein9@gmail.com</td>
+                                        <td>تهران,میدان ولیعصر ,بلوار کریم خان,کوچه بالاور,پلاک22</td>
+                                        <td>                                        
+                                            <i class="material-icons red-text m-r-6 m-l-5">delete_forever</i>
+                                            <i class="material-icons blue-text m-l-15">edit</i>
+                                        </td>
+                                    </tr>  -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination_container container p-l-9 p-r-9 p-t-15 p-b-10 flex-sb-m pos-fixed left-0 right-0 bottom-0 z-depth-4 rounded_top_30">
+                            <div class="pageination_items_count flex-l-m p-l-10">
+                                در حال نمایش
+                                <span class="m-l-5 m-r-5 max-w-50 pos-relative top-4"  >
+                                    <input id="sp" type="number" class="blue-text darken-2 no-border m-b-10 center-align" x-on:change="handleChangeItemsCount($el)" :value="itemsCount" >
+                                </span>
+                                
+                                <!-- <span class="blue-text darken-2 m-l-5 m-r-5">10</span> -->
+                                از
+                                <span class="blue-text darken-2 m-l-5 m-r-5" x-text="users.length">100</span>
+                               
+                            </div>
+                            <div >
+                             صفحه :
+                            <strong x-text="currentPage" class="page_show"></strong>
+
+                            </div>
+
+                            <div class="pignation_buttons">
+                                <i class="material-icons blue darken-2 m-l-5 m-r-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill" x-on:click ="nextPage">keyboard_arrow_right</i>
+                                <i class="material-icons blue darken-2 m-l-5 m-r-5 p-l-5 p-r-5 p-t-1 p-b-3 waves-effect waves-light white-text rounded_pill" x-on:click="prevPage">keyboard_arrow_left</i>
+                                <i></i>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="add_user_modal_back" x-show="showAddModal" x-transition x-on:click="showAddModal = false"></div> 
+                    <div class="add_user_modal container rounded_top_30 trans-0-5" x-bind:class="showAddModal ? 'show' : '' " >
+                        <div class="row p-r-40 p-l-20 p-t-10 p-b-10 pos-relative top-7 center">
+                            <h5 class="labels">
+                                <i class="material-icons m-r-10 pos-relative top-3 " style="font-size: 1.5em;">person_add</i>
+                                افزودن کاربر
+                            </h5>
+                            <form>
+                                <div class="input-field col s12">
+                                    <input id="name" type="text" class="validate" x-model="newUserInfo.name">
+                                    <label for="name">نام و نام خانوادگی :</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="username" type="text" class="validate" x-model="newUserInfo.username">
+                                    <label for="username">نام کاربری :</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input id="email" type="email" class="validate" x-model="newUserInfo.email">
+                                    <label for="email">ایمیل :</label>
+                                </div> 
+
+
+                                <button type="button" class="waves-effect waves-light btn blue darken-1 m-t-30 m-b-10 m-l-30 w-full max-w-300 rounded_pill" x-on:click="handleSubmitAddUserForm()">
+                                    ثبت کردن
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>   
+
+
+                <script src="/assets/js/axios.js"></script>       
+              <script defer src="/assets/js/alphine.js"></script>
+              <script  src="/assets/js/alphineJsControllers/usersController.js"></script>
+              <script src="/assets/materialize-v1.0.0/materialize/js/materialize.min.js"></script>
+              <script src="/assets/js/app.js"></script>  
+              <script src="/assets/js/user.js"></script>
+      </body>
+      </html>
+    
