@@ -13,9 +13,9 @@
 - ✅ طراحی کاملاً واکنش‌گرا (Responsive) برای موبایل و دسکتاپ
 - ✅ قابلیت توسعه بسیار بالا (معماری مناسب برای اضافه شدن امکانات جدید)
 <div style="display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
-  <img src="https://github.com/user-attachments/assets/922475c4-4e24-441b-8589-a9c1543bac20.jpg" alt="تصویر 1" style="width: 32%; object-fit: cover;">
-  <img src="https://github.com/user-attachments/assets/6c7abb67-54da-4112-b9ed-0146e55265ed.jpg" alt="تصویر 2" style="width: 32%; object-fit: cover;">
-  <img  src="https://github.com/user-attachments/assets/14d6eb3c-da62-4b3a-811e-80059a2c4e03.jpg" alt="تصویر 3" style="width: 32%; object-fit: cover;">
+  <img src="https://github.com/user-attachments/assets/922475c4-4e24-441b-8589-a9c1543bac20" alt="تصویر 1" style="width: 32%; object-fit: cover;">
+  <img src="https://github.com/user-attachments/assets/6c7abb67-54da-4112-b9ed-0146e55265ed" alt="تصویر 2" style="width: 32%; object-fit: cover;">
+  <img  src="https://github.com/user-attachments/assets/14d6eb3c-da62-4b3a-811e-80059a2c4e03" alt="تصویر 3" style="width: 32%; object-fit: cover;">
 </div>
 ## 🛠️ تکنولوژی‌های استفاده‌شده
 
